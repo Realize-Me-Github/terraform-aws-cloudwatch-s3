@@ -56,6 +56,10 @@ resource "aws_s3_bucket_versioning" "cloudwatch_bin" {
     status     = "Disabled"
     mfa_delete = var.log_bucket_mfa_delete
   }
+
+  lifecycle {
+    ignore_changes = [versioning_configuration]
+  }
 }
 
 resource "aws_s3_bucket_notification" "bucket_notification" {
